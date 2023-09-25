@@ -1,0 +1,693 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Adding form inputs.</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="459a29bd-356d-4a86-9e3d-9bf408a9a5a2" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-1.2.1&amp;q=80&amp;cs=tinysrgb&amp;fm=jpg&amp;crop=entropy" style="object-position:center 22.650000000000002%"/><h1 class="page-title">Adding form inputs.</h1></header><div class="page-body"><p id="0737c440-ea1c-4010-b4d0-96b4b7717a74" class="">
+</p><figure id="96d49745-b42d-4cfb-87d5-7aa5b6799a37" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled.png"><img style="width:613px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled.png"/></a></figure><p id="5a8d7fbc-c04e-434b-b386-6c80771be6e0" class="">
+</p><p id="6199fa76-297d-4a21-838c-e327902eadc2" class="">
+</p><figure id="e02dad24-2f48-4e59-a923-8509289638e2" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%201.png"><img style="width:930px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%201.png"/></a></figure><p id="30fa2283-884f-4ee8-9f15-5d8ac355672b" class="">
+</p><p id="9c074342-df0c-47c9-ab05-c61bb9211d09" class="">Once the HTML / CSS for taking User input is done, we can start listening to the User input.</p><figure id="97732647-5d43-452c-acb9-9f4b7be732bb" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%202.png"><img style="width:726px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%202.png"/></a></figure><figure id="a60355e0-adfa-4ce5-b686-945ec4a2a97e" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%203.png"><img style="width:548px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%203.png"/></a></figure><p id="ecb4c729-7a67-4aba-9463-c7e8aba9c336" class="">
+</p><p id="f4973074-d599-4994-92e9-c6fadd478058" class="">Understand what’s happening here. We are giving an onChange characteristic to input type, which in turn calls enterTextFn which will be called for every stroke / change → Not just submit, but also every change.</p><p id="13bf86d7-e495-406c-99ae-b40adf6e2311" class="">So now we have to save the entered value somewhere even though the Component will be revaluated again → Yes, we use useState to achieve this.</p><p id="ef50bdbf-d33c-44c6-a623-a8c04791d0c7" class="">
+</p><p id="d4993e4a-93a1-44be-b67d-63440b82b36e" class="">There are a couple of ways to solve this. One way is to use useState for all the variables singly and destructuring it into array (3) → and using them. Or else see the current appraoch:</p><figure id="b847e8eb-b536-4625-ba0d-772495583df7" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%204.png"><img style="width:858px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%204.png"/></a></figure><p id="423f4095-233c-44ec-af1c-6722b00eec39" class="">
+</p><p id="e2e4916e-31f2-47d5-8422-60ca9168049f" class="">The commented one is the prev approach. Hence, you use <mark class="highlight-yellow">setEnteredTitle()</mark> to change title and so on. Or else, the current approach is storing all the variables in one object and passing it and it shall also returns an object of data and an object of state changing functions.</p><p id="0d524ec7-04a4-4489-bad8-f1cdbc3b0036" class="">
+</p><figure id="6a900d65-db54-492b-ae86-f238d94ec898" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%205.png"><img style="width:887px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%205.png"/></a></figure><p id="e00feb8a-4749-4d78-b35e-af6e7bb58edb" class="">The highlighted one is older. But since being asynchronous, it is better to the next approach.</p><p id="cadec49b-bbbd-4f36-9c46-fa5ef6754f4a" class="">This is better when the current State depends on the previous approach.</p><p id="7e88f5c6-aaf4-4372-a620-b4e64a8260d5" class="">
+</p><p id="ac245776-6bb5-4bf2-95af-985141573f71" class="">So in a brief, there are 3 ways, you can solve the issue of having multiple states in the same component. They are:</p><p id="5c00901b-3f34-4897-932c-4ed409c7eeed" class="">
+</p><ol type="1" id="410a7220-1693-43df-9f3b-a4bc2b122188" class="numbered-list" start="1"><li>Using useState() n times for n variables.</li></ol><ol type="1" id="7b2da7d7-e092-4c7e-8120-acc3469dc33d" class="numbered-list" start="2"><li>Using useState() singe time by enclosing n variables in single object and while using stateChangingFunction, copy the user input and overwrite.</li></ol><ol type="1" id="9a9febb9-cae7-4c84-9a74-8f1dc5fd2fb9" class="numbered-list" start="3"><li>( When there is a prev. state dependency ) Passing function with prevState and copying prevState and then overwriting.</li></ol><p id="2a460ad3-9921-449b-9342-4d0e5199b968" class="">
+</p><p id="fa3d2bde-451b-4011-a4a9-620702047dcf" class="">For now, we are sticking with 1st step.</p><p id="a40296eb-adb5-4228-ba14-bfdbb3180e4a" class="">
+</p><p id="14a38a1b-318b-4f43-b486-414ee7417a22" class="">Now we should be able to collect data and then do something with it. That can achieved with some HTML only. → Form onSubmit.</p><p id="8c60c5a0-1e36-42df-8d07-92ddb9176af3" class="">
+</p><figure id="1d28303b-e6b8-4802-833a-4fd0769642e9" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%206.png"><img style="width:502px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%206.png"/></a></figure><p id="9a9ebb4e-c00f-46fc-bdd1-c0824ad6b2c2" class="">
+</p><p id="62415d8f-6d29-4121-9a2f-1915da5717ad" class="">The reason for having <mark class="highlight-yellow">event.preventDefault</mark> is that the default way when submitted by the form, the form reloads. Hence using this prevents browser from refreshing or reloading.</p><p id="d7602752-ac0a-402d-9939-c8150db32ba1" class="">
+</p><h2 id="21500d44-bf69-4eb3-bc0b-890ce628575e" class="">Two Way Binding.</h2><p id="467b5cc5-8c0c-4398-830f-5906decf8580" class="">Not only do we listen to the input, we also can pass a new value back into the input, so that we can reset the input easily.</p><p id="ca0d9976-1459-46b6-8639-5fdd8fafa170" class="">Just by doing value = {enteredTitle} and adding setEnteredValue(’ ’). By doing this we can ensure that value is being stored inside the state and also the textbox would be empty again.</p><p id="3d49e69c-d273-4343-ac3a-ded03ce50ffe" class="">Two way binding is needed and much important when dealing with forms.</p><p id="677fa2b8-e2d9-4902-b865-7efd2e83f75d" class="">
+</p><p id="f0f5bd1f-afe9-45d7-a5f1-4ed50cd466f8" class="">
+</p><p id="4cffaa77-600d-4c9a-a0bf-3e4d1d3b19f4" class="">So where are we now? We are able to create object from the userData and are able to print it.</p><p id="ea479b5f-bfd6-4202-a671-e0101ef730af" class="">But do we really need data here? In ExpenseData.js? No, we need in App.js</p><p id="4b8adb2a-a977-4d24-ab6d-a519bc2c8d8f" class="">
+</p><p id="008dcb75-d374-45d5-9129-85b235723440" class="">Hence, we have to communicate from <mark class="highlight-yellow">child to parent</mark>.</p><p id="6eb7d2ba-deb3-4e95-a249-570ccbf95cb1" class="">This is passing data upwards, contradicting to how we learnt downwards. How to do it upwards?</p><p id="f1cc1034-84ff-44cb-a245-6db5193edc7b" class="">
+</p><p id="5350fe21-b542-40b2-806f-7326edf7b25d" class="">This can be done by making custom Event props and we can expect function as values and hence calling function inside custom component, and hence pass data.</p><p id="b443b28d-8cfc-49f8-bcc9-46955176eb7d" class="">So the work flow is: ExpenseForm → NewExpense → App</p><p id="10e5b64c-aea1-47c9-9107-1c4256ba3d2c" class="">
+</p><p id="4ab2aa72-b483-4eb8-addc-ee3cb938b538" class="">Try to understand from here:</p><figure id="19842909-6c50-4fcd-a2db-9c3bf5b6a5c0" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%207.png"><img style="width:893px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%207.png"/></a></figure><p id="02be478a-5eec-4f5b-8a2a-d8097062a00e" class="">
+</p><p id="109386b1-db0d-46ae-a0ef-511e7c95dfa8" class="">Making our custom own props in the parent and passing it into children such that children does the processing and returns data to the parent. Just like a function call.</p><p id="458744d4-56b0-4293-9e62-0840b04a898a" class="">
+</p><figure id="5b0b8842-cbd1-491e-b3e6-f49842459f8d" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%208.png"><img style="width:501px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%208.png"/></a></figure><p id="66c09fa1-2577-4766-a13c-54f810a3e184" class="">
+</p><p id="02b4e1a6-a4c9-478a-9b5d-fd73e8625aa1" class="">So now all that is required is to pass from NewExpense to App.js</p><p id="ea6a83e8-d20c-4f58-8d67-3e3d72527419" class="">So that can be acheived as: </p><figure id="4e519744-0c81-4613-b116-cd0a1e25cb40" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%209.png"><img style="width:891px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%209.png"/></a></figure><figure id="3165a66e-ff50-431e-a91f-928491ff2c73" class="image"><a href="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%2010.png"><img style="width:747px" src="Adding%20form%20inputs%20459a29bd356d4a869e3d9bf408a9a5a2/Untitled%2010.png"/></a></figure><p id="a4bf1f00-54fd-4f25-b5c8-8b603804b4e5" class="">
+</p><p id="7ac9a771-0560-4f21-9bd0-0e35f65744d3" class="">This is how we move data from child to parent. Simple idea is to create a function → Custom handlers and then return it.</p></div></article></body></html>
